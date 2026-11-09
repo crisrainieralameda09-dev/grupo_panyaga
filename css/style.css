@@ -493,6 +493,35 @@ a { text-decoration: none; color: inherit; }
 }
 .g-item:hover figcaption span { transform: translateY(0); }
 
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.4);
+  color: #fff; font-size: 2rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s ease, transform .3s ease;
+  z-index: 10;
+}
+.lightbox-close:hover { background: rgba(255,255,255,.3); transform: scale(1.1); }
+.lightbox-content {
+  max-width: 90vw; max-height: 90vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-img {
+  max-width: 100%; max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 0 60px rgba(0,0,0,.5);
+}
+
 /* ---------- Video section ---------- */
 .video-section { background: linear-gradient(180deg, transparent, rgba(219,238,255,.55), transparent); }
 .video-frame {
@@ -714,8 +743,9 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 1024px) {
   .timeline-cards { grid-template-columns: repeat(2, 1fr); }
   .timeline-cards::before { display: none; }
-  .gallery { columns: 2; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
   .panyaga-cards { grid-template-columns: repeat(2, 1fr); }
+  .members-grid { grid-template-columns: repeat(2, 1fr); }
   .quote-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
 }
 
@@ -757,11 +787,14 @@ a { text-decoration: none; color: inherit; }
 
   .quote-open { left: -20px; font-size: 6rem; }
   .quote-close { right: -20px; font-size: 6rem; bottom: -60px; }
+
+  .video-frame { border-radius: 18px; }
 }
 
 @media (max-width: 480px) {
   .gallery { grid-template-columns: 1fr; }
   .panyaga-cards { grid-template-columns: 1fr; }
+  .members-grid { grid-template-columns: 1fr; }
   .profile-card { padding: 30px 24px 26px; }
   .timeline-cards { grid-template-columns: 1fr; }
   .hero-buttons .btn { width: 100%; text-align: center; }
